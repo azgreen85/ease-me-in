@@ -1,56 +1,95 @@
-/* Reset some defaults */
+/* GENERAL STYLING */
 body {
-    background-color: #111;
-    font-family: Arial, sans-serif;
-    color: white;
-    text-align: center;
-  }
-  
-  h1 {
-    margin: 30px 0;
-    font-size: 2em;
-  }
-  
-  ul {
-    list-style: none;
-    padding: 0;
-    display: flex;
-    flex-wrap: wrap;
-    gap: 20px;
-    justify-content: center;
-  }
-  
-  li {
-    position: relative;
-    width: 200px;
-    height: 200px;
-    background: black;
-    border-radius: 12px;
-    cursor: pointer;
-    overflow: hidden;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: transform 0.2s ease;
-  }
-  
-  li:hover {
-    transform: scale(1.05);
-  }
-  
-  /* Hide default audio controls */
-  li audio {
-    display: none;
-  }
-  
-  /* Grey play button overlay */
-  li::after {
-    content: "▶";
-    font-size: 3em;
-    color: transparent;
-    transition: color 0.2s ease;
-  }
-  
-  li:hover::after {
-    color: grey;
-  }  
+  background-color: #111;
+  font-family: Arial, sans-serif;
+  color: white;
+  text-align: center;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 30px;
+  justify-content: center;
+  align-items: center;
+  padding: 50px;
+  margin: 0;
+}
+
+h1 {
+  margin: 30px 0;
+  font-size: 2em;
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 40px;
+  justify-content: center;
+}
+
+/* TRACK CONTAINER */
+.track-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  position: relative;
+}
+
+/* BLACK BOX */
+li {
+  width: 200px;
+  height: 200px;
+  background: black;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+/* HOVER GREY PLAY ICON IF NOT PLAYING */
+li:hover:not(.playing)::after {
+  content: "▶";
+  font-size: 3em;
+  color: grey;
+  position: absolute;
+}
+
+/* PLAYING ICON */
+li.playing::after {
+  content: "■";
+  font-size: 3em;
+  color: grey;
+  position: absolute;
+}
+
+/* HOVER EFFECT ON BOX */
+li:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 20px rgba(255, 255, 255, 0.3);
+}
+
+/* PROGRESS BAR */
+.progress-overlay {
+  position: relative;
+  width: 200px;
+  height: 20px; /* taller for easier click */
+  cursor: pointer;
+  border: 1px solid grey; /* ADD GREY BORDER */
+  border-radius: 5px;
+  box-sizing: border-box;
+}
+
+.progress-bar {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%; /* fill overlay height */
+  width: 0%;
+  background: #c1b8c5;
+  border-radius: 5px 0 0 5px;
+  transition: width 0.1s linear;
+}
