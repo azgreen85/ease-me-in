@@ -23,7 +23,6 @@ tracks.forEach(url => {
   const audio = document.createElement("audio");
   audio.src = url;
   container.appendChild(audio);
-  
 
   // Progress overlay + bar
   const overlay = document.createElement("div");
@@ -35,6 +34,23 @@ tracks.forEach(url => {
 
   container.appendChild(overlay);
   musicList.appendChild(container);
+
+  // Update progress bar (only once per audio)
+  audio.addEventListener("timeupdate", () => {
+    const progress = (audio.currentTime / audio.duration) * 100;
+    progressBar.style.width = `${progress}%`;
+  });
+
+  // Border toggle
+  audio.addEventListener("play", () => overlay.classList.add("playing"));
+  audio.addEventListener("pause", () => overlay.classList.remove("playing"));
+  audio.addEventListener("ended", () => {
+    overlay.classList.remove("playing");
+    progressBar.style.width = "0%";
+    li.classList.remove("playing");
+    currentAudio = null;
+    currentContainer = null;
+  });
 
   // Play/pause toggle on box
   li.addEventListener("click", () => {
@@ -60,19 +76,6 @@ tracks.forEach(url => {
 
     currentAudio.play();
     li.classList.add("playing");
-
-    // Update progress bar
-    currentAudio.addEventListener("timeupdate", () => {
-      const progress = (currentAudio.currentTime / currentAudio.duration) * 100;
-      progressBar.style.width = `${progress}%`;
-    });
-
-    currentAudio.addEventListener("ended", () => {
-      li.classList.remove("playing");
-      progressBar.style.width = "0%";
-      currentAudio = null;
-      currentContainer = null;
-    });
   });
 
   // Click-to-seek on overlay
