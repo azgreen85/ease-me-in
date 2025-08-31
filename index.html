@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Mix Player</title>
+  <style>
+    body {
+      background: #111;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 30px;
+      justify-content: center;
+      align-items: center;
+      padding: 50px;
+      margin: 0;
+      font-family: Arial, sans-serif;
+    }
+
+    .mix {
+      position: relative;
+      width: 250px;
+      height: 250px;
+      background: black;
+      border: 0.2px solid #545454;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      cursor: pointer;
+      overflow: hidden;
+    }
+
+    .mix-text {
+      color: white;
+      font-size: 20px;
+      font-weight: bold;
+      text-align: center;
+      line-height: 1.5;
+      transition: opacity 0.3s ease;
+      z-index: 2;
+      padding: 10px;
+    }
+
+    .play-btn {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      font-size: 50px;
+      color: grey;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+      z-index: 3;
+    }
+
+    .mix:hover .mix-text {
+      opacity: 0;
+    }
+
+    .mix:hover .play-btn {
+      opacity: 1;
+    }
+
+    .progress-bar {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 0; /* Starts with 0 width */
+      height: 30px;
+      background-color: #c1b8c5;
+      transition: width 0.1s linear;
+    }
+    
+    .mix.active .progress-bar {
+  width: 100%; /* Makes the progress bar visible and full width */
+}
+
+    .mix.active {
+      border-color: #ae00ff; /* Changes the border color of the active mix */
+    }
+
+    .mix.active .play-btn {
+        opacity: 1; /* Keeps the play/pause button visible */
+    }
+
+    .mix.active .mix-text {
+        opacity: 0; /* Keeps the text hidden */
+    }
+
+    .progress-overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 30px; /* same height as progress bar */
+    cursor: pointer;
+    z-index: 5;
+  }
+
+  </style>
+</head>
+<body>
+    <div class="mix" data-audio="2024-07-24 14-36-18.mp3">
+        <div class="mix-text">First<br>Mix</div>
+        <div class="play-btn">▶</div>
+        <div class="progress-bar"></div>
+        <div class="progress-overlay"></div>
+    </div>
+    
+    <div class="mix" data-audio="2025-02-25 17-47-07.mp3">
+        <div class="mix-text">FEB<br>2025</div>
+        <div class="play-btn">▶</div>
+        <div class="progress-bar"></div>
+        <div class="progress-overlay"></div>
+    </div>
+    
+    <div class="mix">
+        <div class="mix-text">EASE ME IN</div>
+    </div>
+    
+    <div class="mix" data-audio="2025-04-07 12-57-53.mp3">
+        <div class="mix-text">APRIL<br>2025</div>
+        <div class="play-btn">▶</div>
+        <div class="progress-bar"></div>
+        <div class="progress-overlay"></div>
+    </div>
+    
+    <div class="mix" data-audio="2025-04-24 02-05-56.mp3">
+        <div class="mix-text">LATE<br>APRIL</div>
+        <div class="play-btn">▶</div>
+        <div class="progress-bar"></div>
+        <div class="progress-overlay"></div>
+    </div>
+    
+    <div class="mix" data-audio="2025-05-19 18-17-41 1.mp3">
+        <div class="mix-text">MAY<br>2025</div>
+        <div class="play-btn">▶</div>
+        <div class="progress-bar"></div>
+        <div class="progress-overlay"></div>
+    </div>
+    
+    <div class="mix" data-audio="amafro 1.mp3">
+        <div class="mix-text">AMAFRO</div>
+        <div class="play-btn">▶</div>
+        <div class="progress-bar"></div>
+        <div class="progress-overlay"></div>
+    </div>
+    
+    <div class="mix" data-audio="finals mix Sp25.mp3">
+        <div class="mix-text">FINALS<br>SP25</div>
+        <div class="play-btn">▶</div>
+        <div class="progress-bar"></div>
+        <div class="progress-overlay"></div>
+    </div>    
+
+  <script>
+let currentAudio = null;
+let currentMix = null;
+
+document.querySelectorAll('.mix').forEach(mix => {
+  const playBtn = mix.querySelector('.play-btn');
+  const progressBar = mix.querySelector('.progress-bar');
+  const overlay = mix.querySelector('.progress-overlay'); // use overlay for seeking
+
+  // Play/pause toggle
+  mix.addEventListener('click', (e) => {
+    if (e.target === overlay) return; // ignore clicks on overlay
+
+    const audioFile = mix.getAttribute('data-audio');
+    if (!audioFile) return;
+
+    if (currentMix === mix) {
+      if (currentAudio.paused) {
+        currentAudio.play();
+        playBtn.textContent = '■';
+      } else {
+        currentAudio.pause();
+        playBtn.textContent = '▶';
+      }
+      return;
+    }
+
+    if (currentAudio) {
+      currentAudio.pause();
+      currentMix.classList.remove('active');
+      currentMix.querySelector('.play-btn').textContent = '▶';
+      currentMix.querySelector('.progress-bar').style.width = '0%';
+    }
+
+    currentAudio = new Audio(audioFile);
+    currentMix = mix;
+    currentAudio.play();
+    mix.classList.add('active');
+    playBtn.textContent = '■';
+
+    currentAudio.addEventListener('timeupdate', () => {
+      const progress = (currentAudio.currentTime / currentAudio.duration) * 100;
+      progressBar.style.width = `${progress}%`;
+    });
+
+    currentAudio.addEventListener('ended', () => {
+      mix.classList.remove('active');
+      playBtn.textContent = '▶';
+      progressBar.style.width = '0%';
+      currentAudio = null;
+      currentMix = null;
+    });
+  });
+
+  // Click-to-seek using overlay
+  if (overlay) {
+    overlay.addEventListener('click', (e) => {
+      e.stopPropagation();
+      if (!currentAudio) return;
+
+      const rect = overlay.getBoundingClientRect();
+      const clickX = e.clientX - rect.left;
+      const clickPercentage = clickX / rect.width;
+      currentAudio.currentTime = currentAudio.duration * clickPercentage;
+    });
+  }
+});
+  </script>
+
+</body>
+</html>
