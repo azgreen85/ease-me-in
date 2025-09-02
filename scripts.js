@@ -9,7 +9,8 @@ const tracks = [
   { title: "#8", author: "azikiwea", src: "https://storage.googleapis.com/ease-me-in-music/2025-06-05%2013-54-08.mp3" },
   { title: "#9", author: "azikiwea", src: "https://storage.googleapis.com/ease-me-in-music/2025-06-11%2018-57-46.mp3" },
   { title: "#10", author: "azikiwea", src: "https://storage.googleapis.com/ease-me-in-music/finnals%20mix.mp3" },
-  { title: "#11", author: "khalfani", src: "https://storage.googleapis.com/ease-me-in-music/Bounce%20house%20mix.mp3" }
+  { title: "#11", author: "khalfani", src: "https://storage.googleapis.com/ease-me-in-music/Bounce%20house%20mix.mp3" },
+  { title: "#12", author: "azikiwea", src: "https://storage.googleapis.com/ease-me-in-music/house%20mix%201.mp3"}
 ];
 
 const musicList = document.getElementById("music-list");
