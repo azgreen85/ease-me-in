@@ -47,6 +47,26 @@ ul {
   position: relative;
 }
 
+.track-title {
+  position: absolute;
+  top: 5px;
+  left: 10px;
+  font-weight: 100;
+  font-size: 12px;
+  font-family: Helvetica, Arial, sans-serif;
+  color: #4d4d4df3;
+}
+
+.track-author {
+  position: absolute;
+  bottom: 5px;
+  right: 10px;
+  font-size: 12px;
+  font-weight: 100;
+  font-family: Helvetica, Arial, sans-serif;
+  color: #4d4d4df3;
+}
+
 /* BLACK BOX */
 li {
   width: 200px;
