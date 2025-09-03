@@ -1,16 +1,16 @@
 const tracks = [
-  { title: "#1", author: "azikiwea", src: "https://storage.googleapis.com/ease-me-in-music/2024-07-24%2014-36-18.mp3" },
-  { title: "#2", author: "azikiwea", src: "https://storage.googleapis.com/ease-me-in-music/2025-02-25%2017-47-07.mp3" },
-  { title: "#3", author: "azikiwea", src: "https://storage.googleapis.com/ease-me-in-music/2025-04-07%2012-57-53.mp3" },
-  { title: "#4", author: "azikiwea", src: "https://storage.googleapis.com/ease-me-in-music/2025-04-24%2002-05-56.mp3" },
-  { title: "#5", author: "azikiwea", src: "https://storage.googleapis.com/ease-me-in-music/2025-05-19%2018-17-41%201.mp3" },
-  { title: "#6", author: "azikiwea", src: "https://storage.googleapis.com/ease-me-in-music/amafro%201.mp3" },
-  { title: "#7", author: "azikiwea", src: "https://storage.googleapis.com/ease-me-in-music/finals%20mix%20Sp25.mp3" },
-  { title: "#8", author: "azikiwea", src: "https://storage.googleapis.com/ease-me-in-music/2025-06-05%2013-54-08.mp3" },
-  { title: "#9", author: "azikiwea", src: "https://storage.googleapis.com/ease-me-in-music/2025-06-11%2018-57-46.mp3" },
-  { title: "#10", author: "azikiwea", src: "https://storage.googleapis.com/ease-me-in-music/finnals%20mix.mp3" },
-  { title: "#11", author: "khalfani", src: "https://storage.googleapis.com/ease-me-in-music/Bounce%20house%20mix.mp3" },
-  { title: "#12", author: "azikiwea", src: "https://storage.googleapis.com/ease-me-in-music/house%20mix%201.mp3"}
+  { title: "#1: 30k", author: "azikiwea", src: "https://storage.googleapis.com/ease-me-in-music/2024-07-24%2014-36-18.mp3" },
+  { title: "#2: cabo", author: "azikiwea", src: "https://storage.googleapis.com/ease-me-in-music/2025-02-25%2017-47-07.mp3" },
+  { title: "#3: freak", author: "azikiwea", src: "https://storage.googleapis.com/ease-me-in-music/2025-04-07%2012-57-53.mp3" },
+  { title: "#4: late night afro house", author: "azikiwea", src: "https://storage.googleapis.com/ease-me-in-music/2025-04-24%2002-05-56.mp3" },
+  { title: "#5: 160min afrobeat & dancehall", author: "azikiwea", src: "https://storage.googleapis.com/ease-me-in-music/2025-05-19%2018-17-41%201.mp3" },
+  { title: "#6: amafro1", author: "azikiwea", src: "https://storage.googleapis.com/ease-me-in-music/amafro%201.mp3" },
+  { title: "#7: finnals sp25", author: "azikiwea", src: "https://storage.googleapis.com/ease-me-in-music/finals%20mix%20Sp25.mp3" },
+  { title: "#8: fetch", author: "azikiwea", src: "https://storage.googleapis.com/ease-me-in-music/2025-06-05%2013-54-08.mp3" },
+  { title: "#9: cant believe it", author: "azikiwea", src: "https://storage.googleapis.com/ease-me-in-music/2025-06-11%2018-57-46.mp3" },
+  { title: "#10: finnals f24", author: "azikiwea", src: "https://storage.googleapis.com/ease-me-in-music/finnals%20mix.mp3" },
+  { title: "#11: bounce house", author: "khalfani", src: "https://storage.googleapis.com/ease-me-in-music/Bounce%20house%20mix.mp3" },
+  { title: "#12: house aif", author: "azikiwea", src: "https://storage.googleapis.com/ease-me-in-music/house%20mix%201.mp3"}
 ];
 
 const musicList = document.getElementById("music-list");
